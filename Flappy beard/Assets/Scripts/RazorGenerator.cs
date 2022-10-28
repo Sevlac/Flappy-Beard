@@ -5,15 +5,13 @@ using UnityEngine;
 public class RazorGenerator : MonoBehaviour
 {
     public float maxTime = 1;
-    private float timer = 0;
+    private float timer;
     public GameObject razor;
     public float height;
     // Start is called before the first frame update
     void Start()
     {
-        GameObject newRazor = Instantiate(razor);
-        newRazor.transform.position = transform.position + new Vector3(0, Random.Range(-height, height), 0);
-        
+        timer = maxTime;
     }
 
     // Update is called once per frame
@@ -21,13 +19,17 @@ public class RazorGenerator : MonoBehaviour
     {
         if (timer > maxTime)
         {
-            GameObject newRazor = Instantiate(razor);
-            newRazor.transform.position = transform.position + new Vector3(0, Random.Range(-height, height), 0);
-            Destroy(newRazor, 15);
-            timer = 0;
-
+            CreateRazors();
         }
 
         timer += Time.deltaTime;
+    }
+    void CreateRazors()
+    {
+        GameObject newRazor = Instantiate(razor);
+        newRazor.transform.position = transform.position + new Vector3(0, Random.Range(-height, height), 0);
+        Destroy(newRazor, 15);
+        timer = 0;
+
     }
 }
