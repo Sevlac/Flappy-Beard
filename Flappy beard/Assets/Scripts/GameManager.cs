@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOverCanvas.SetActive(true);
+
+        // Pause the game
         Time.timeScale = 0;
     }
 
